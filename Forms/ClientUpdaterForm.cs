@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using JPRagTools.Utils;
 using JPRagTools.Model;
-using JPRagTools.Utils;
+using System.Windows.Forms;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace JPRagTools.Forms
 {
@@ -43,7 +38,7 @@ namespace JPRagTools.Forms
                 clients.AddRange(JsonConvert.DeserializeObject<List<ClientDTO>>(remoteServersRaw));
 
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 //If catch some exception while Fetch, load resource file.
                 MessageBox.Show("Não é possível carregar o arquivo supported_servers. Carregando recurso em vez disso....");
@@ -53,7 +48,7 @@ namespace JPRagTools.Forms
             {
                 LoadServers(clients);
                 new Container().Show();
-                //Hide();
+                Hide();
             }
         }
 

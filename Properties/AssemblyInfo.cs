@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("JPRagTools")]
+[assembly: AssemblyProduct("ChilliTools")]
 [assembly: AssemblyCopyright("Copyright © JP Digital Solutions 2025")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

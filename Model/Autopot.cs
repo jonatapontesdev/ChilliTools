@@ -86,7 +86,7 @@ namespace JPRagTools.Model
         private void pot(Key key)
         {
             Keys k = (Keys)Enum.Parse(typeof(Keys), key.ToString());
-            if ((k != Keys.None) && !KeyboardHelper.IsKeyDown(Key.LeftAlt) && !KeyboardHelper.IsKeyDown(Key.RightAlt))
+            if ((k != Keys.None) && !Keyboard.IsKeyDown(Key.LeftAlt) && !Keyboard.IsKeyDown(Key.RightAlt))
             {
                 Interop.PostMessage(ClientSingleton.GetClient().process.MainWindowHandle, Constants.WM_KEYDOWN_MSG_ID, k, 0); // keydown
                 Interop.PostMessage(ClientSingleton.GetClient().process.MainWindowHandle, Constants.WM_KEYUP_MSG_ID, k, 0); // keyup

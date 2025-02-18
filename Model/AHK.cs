@@ -68,9 +68,9 @@ namespace JPRagTools.Model
                 foreach (KeyConfig config in AhkEntries.Values)
                 {
                     Keys thisk = (Keys)Enum.Parse(typeof(Keys), config.key.ToString());
-                    if (!KeyboardHelper.IsKeyDown(Key.LeftAlt) && !KeyboardHelper.IsKeyDown(Key.RightAlt))
+                    if (!Keyboard.IsKeyDown(Key.LeftAlt) && !Keyboard.IsKeyDown(Key.RightAlt))
                     {
-                        if (config.ClickActive && KeyboardHelper.IsKeyDown(config.key))
+                        if (config.ClickActive && Keyboard.IsKeyDown(config.key))
                         {
                             if (noShift) keybd_event(Constants.VK_SHIFT, 0x45, Constants.KEYEVENTF_EXTENDEDKEY, 0);
                             _AHKCompatibility(roClient, config, thisk);
@@ -110,7 +110,7 @@ namespace JPRagTools.Model
 
             if (this.mouseFlick)
             {
-                while (KeyboardHelper.IsKeyDown(config.key))
+                while (Keyboard.IsKeyDown(config.key))
                 {
                     Interop.PostMessage(roClient.process.MainWindowHandle, Constants.WM_KEYDOWN_MSG_ID, thisk, 0);
                     System.Windows.Forms.Cursor.Position = new Point(System.Windows.Forms.Cursor.Position.X - Constants.MOUSE_DIAGONAL_MOVIMENTATION_PIXELS_AHK, System.Windows.Forms.Cursor.Position.Y - Constants.MOUSE_DIAGONAL_MOVIMENTATION_PIXELS_AHK);
@@ -121,7 +121,7 @@ namespace JPRagTools.Model
             }
             else
             {
-                while (KeyboardHelper.IsKeyDown(config.key))
+                while (Keyboard.IsKeyDown(config.key))
                 {
                     Interop.PostMessage(roClient.process.MainWindowHandle, Constants.WM_KEYDOWN_MSG_ID, thisk, 0);
                     send_click(0);
@@ -132,7 +132,7 @@ namespace JPRagTools.Model
 
         private void _AHKSpeedBoost(Client roClient, KeyConfig config, Keys thisk)
         {
-            while (KeyboardHelper.IsKeyDown(config.key))
+            while (Keyboard.IsKeyDown(config.key))
             {
                 Point cursorPos = System.Windows.Forms.Cursor.Position;
                 Interop.PostMessage(roClient.process.MainWindowHandle, Constants.WM_KEYDOWN_MSG_ID, thisk, 0);
@@ -145,7 +145,7 @@ namespace JPRagTools.Model
 
         private void _AHKNoClick(Client roClient, KeyConfig config, Keys thisk)
         {
-            while (KeyboardHelper.IsKeyDown(config.key))
+            while (Keyboard.IsKeyDown(config.key))
             {
                 Interop.PostMessage(roClient.process.MainWindowHandle, Constants.WM_KEYDOWN_MSG_ID, thisk, 0);
                 Thread.Sleep(this.AhkDelay);

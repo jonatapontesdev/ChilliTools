@@ -96,7 +96,7 @@ namespace JPRagTools.Model
         {
             foreach (ChainConfig chainConfig in this.chainConfigs)
             {
-                if (chainConfig.trigger != Key.None && KeyboardHelper.IsKeyDown(chainConfig.trigger))
+                if (chainConfig.trigger != Key.None && Keyboard.IsKeyDown(chainConfig.trigger))
                 {
                     Dictionary<string, MacroKey> macro = chainConfig.macroEntries;
                     for (int i = 1; i <= macro.Count; i++)//Ensure to execute keys in Order

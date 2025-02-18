@@ -22,7 +22,7 @@ namespace JPRagTools.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace JPRagTools.Properties {
         ///   Retorna a instância de ResourceManager armazenada em cache usada por essa classe.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("JPRagTools.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace JPRagTools.Properties {
         ///   pesquisas de recursos que usam essa classe de recurso de tipo de alta segurança.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace JPRagTools.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ChilliTools {
+        public static System.Drawing.Bitmap ChilliTools {
             get {
                 object obj = ResourceManager.GetObject("ChilliTools", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -73,7 +73,7 @@ namespace JPRagTools.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ChilliTools_small {
+        public static System.Drawing.Bitmap ChilliTools_small {
             get {
                 object obj = ResourceManager.GetObject("ChilliTools_small", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -83,17 +83,7 @@ namespace JPRagTools.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap logo_4rtools_small {
-            get {
-                object obj = ResourceManager.GetObject("logo-4rtools-small", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap shift {
+        public static System.Drawing.Bitmap shift {
             get {
                 object obj = ResourceManager.GetObject("shift", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -103,7 +93,7 @@ namespace JPRagTools.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap up_and_down_arrow {
+        public static System.Drawing.Bitmap up_and_down_arrow {
             get {
                 object obj = ResourceManager.GetObject("up_and_down_arrow", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));

@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Metadata;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using JPRagTools.Forms;
-using JPRagTools.Model;
 
 namespace JPRagTools
 {
@@ -23,10 +16,9 @@ namespace JPRagTools
             // app.IsMdiContainer = true;
 
             //Forms.ClientUpdaterForm app = new Forms.ClientUpdaterForm();
-            //Forms.Container app = new Forms.Container();
+            //Forms.ProfileForm app = new Forms.ProfileForm();
             Forms.AutoPatcher app = new Forms.AutoPatcher();
             System.Windows.Forms.Application.Run(app);
-            //Application.Run(Forms.AddServerForm());
         }
     }
 }

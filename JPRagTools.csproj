@@ -84,6 +84,7 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.AppContext, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.AppContext.4.3.0\lib\net463\System.AppContext.dll</HintPath>
@@ -355,11 +356,35 @@
     <Compile Include="Forms\AddServerForm.Designer.cs">
       <DependentUpon>AddServerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\AdvertisementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AdvertisementForm.Designer.cs">
+      <DependentUpon>AdvertisementForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AHKForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AHKForm.Designer.cs">
+      <DependentUpon>AHKForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ATKDEFForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ATKDEFForm.Designer.cs">
+      <DependentUpon>ATKDEFForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AutoPatcher.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\AutoPatcher.Designer.cs">
       <DependentUpon>AutoPatcher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AutopotForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AutopotForm.Designer.cs">
+      <DependentUpon>AutopotForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ClientUpdaterForm.cs">
       <SubType>Form</SubType>
@@ -384,6 +409,48 @@
     </Compile>
     <Compile Include="Forms\MacroSwitchForm.Designer.cs">
       <DependentUpon>MacroSwitchForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ProfileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ProfileForm.Designer.cs">
+      <DependentUpon>ProfileForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ServersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ServersForm.Designer.cs">
+      <DependentUpon>ServersForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SkillAutoBuffForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SkillAutoBuffForm.Designer.cs">
+      <DependentUpon>SkillAutoBuffForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SkillTimerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SkillTimerForm.Designer.cs">
+      <DependentUpon>SkillTimerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\StatusEffectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\StatusEffectForm.Designer.cs">
+      <DependentUpon>StatusEffectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\StuffAutoBuffForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\StuffAutoBuffForm.Designer.cs">
+      <DependentUpon>StuffAutoBuffForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ToggleApplicationStateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ToggleApplicationStateForm.Designer.cs">
+      <DependentUpon>ToggleApplicationStateForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Action.cs" />
     <Compile Include="Model\Advertiser.cs" />
@@ -419,7 +486,6 @@
     <Compile Include="Utils\EffectStatusIDs.cs" />
     <Compile Include="Utils\FormUtils.cs" />
     <Compile Include="Utils\Interop.cs" />
-    <Compile Include="Utils\KeyboardHelper.cs" />
     <Compile Include="Utils\KeyboardHook.cs" />
     <Compile Include="Utils\ProcessMemoryReader.cs" />
     <Compile Include="Utils\RObserver.cs" />
@@ -427,8 +493,20 @@
     <EmbeddedResource Include="Forms\AddServerForm.resx">
       <DependentUpon>AddServerForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AdvertisementForm.resx">
+      <DependentUpon>AdvertisementForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AHKForm.resx">
+      <DependentUpon>AHKForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ATKDEFForm.resx">
+      <DependentUpon>ATKDEFForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AutoPatcher.resx">
       <DependentUpon>AutoPatcher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AutopotForm.resx">
+      <DependentUpon>AutopotForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ClientUpdaterForm.resx">
       <DependentUpon>ClientUpdaterForm.cs</DependentUpon>
@@ -436,8 +514,35 @@
     <EmbeddedResource Include="Forms\Container.resx">
       <DependentUpon>Container.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MacroSongForm.resx">
+      <DependentUpon>MacroSongForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MacroSwitchForm.resx">
+      <DependentUpon>MacroSwitchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ProfileForm.resx">
+      <DependentUpon>ProfileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ServersForm.resx">
+      <DependentUpon>ServersForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SkillAutoBuffForm.resx">
+      <DependentUpon>SkillAutoBuffForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SkillTimerForm.resx">
+      <DependentUpon>SkillTimerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\StatusEffectForm.resx">
+      <DependentUpon>StatusEffectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\StuffAutoBuffForm.resx">
+      <DependentUpon>StuffAutoBuffForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ToggleApplicationStateForm.resx">
+      <DependentUpon>ToggleApplicationStateForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -465,6 +570,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="supported_servers.json">
+      <SubType>Form</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

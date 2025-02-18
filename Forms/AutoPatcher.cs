@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using Aspose.Zip.Rar;
 using System.Net;
-using System.Runtime.InteropServices;
+using System.Net.Http.Headers;
 
 namespace JPRagTools.Forms
 {
@@ -28,29 +28,36 @@ namespace JPRagTools.Forms
             //List[1] = Url
             try
             {
-                String oldFileName = "4RTools_old.exe";
-                String sourceFileName = "4RTools.exe";
-                File.Delete(oldFileName); //Delete old 4RTools
-                client.Timeout = TimeSpan.FromSeconds(5);
-                client.DefaultRequestHeaders.Add("User-Agent", "request");
-                string latestVersion = await client.GetStringAsync(AppConfig._JPLatestVersionURL);
-                JObject obj = JsonConvert.DeserializeObject<JObject>(latestVersion);
+                String oldFileName = "ChilliTools_old.exe";
+                String sourceFileName = "ChilliTools.exe";
+                File.Delete(oldFileName); 
 
-                string tag = obj["name"].ToString(); //Tag Name
+                client.Timeout = TimeSpan.FromSeconds(5);
+
+                client.DefaultRequestHeaders.Add("User-Agent", "request");
+
+                string token = "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";
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                string latestVersion = await client.GetStringAsync(AppConfig._JPLatestVersionURL);
+
+                JObject obj = JsonConvert.DeserializeObject<JObject>(latestVersion);
+                string tag = obj["name"].ToString(); 
 
                 if (tag != AppConfig.Version)
                 {
-                    string downloadUrl = obj["assets"][0]["browser_download_url"].ToString(); //Latest download url
-                    string fileName = obj["assets"][0]["name"].ToString(); //Latest file name
-                    await Download(downloadUrl, fileName); //Download the .rar file
+                    string downloadUrl = obj["assets"][0]["browser_download_url"].ToString(); // URL do download
+                    string fileName = obj["assets"][0]["name"].ToString(); // Nome do arquivo para baixar
+                    await Download(downloadUrl, fileName); // Faz o download do arquivo
+
                     RarArchive arch = new RarArchive(fileName);
                     File.Move(sourceFileName, oldFileName);
                     arch.ExtractToDirectory(".");
                     arch.Dispose();
-                    File.Delete(fileName); //Delete .rar file downloaded
+
+                    File.Delete(fileName);
                     Environment.Exit(0);
                 }
-
             }
             finally
             {

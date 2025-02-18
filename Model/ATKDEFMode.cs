@@ -49,7 +49,7 @@ namespace JPRagTools.Model
         private int AHKThreadExecution(Client roClient)
         {
             Keys thisk = toKeys(keySpammer);
-            if (this.keySpammer != Key.None && KeyboardHelper.IsKeyDown(this.keySpammer))
+            if (this.keySpammer != Key.None && Keyboard.IsKeyDown(this.keySpammer))
             {
                 foreach (Key key in atkKeys.Values)
                 {
@@ -59,7 +59,7 @@ namespace JPRagTools.Model
 
                 if (this.keySpammerWithClick)
                 {
-                    while (KeyboardHelper.IsKeyDown(keySpammer))
+                    while (Keyboard.IsKeyDown(keySpammer))
                     {
 
                         Interop.PostMessage(roClient.process.MainWindowHandle, Constants.WM_KEYDOWN_MSG_ID, thisk, 0);
@@ -71,7 +71,7 @@ namespace JPRagTools.Model
                 }
                 else
                 {
-                    while (KeyboardHelper.IsKeyDown(keySpammer))
+                    while (Keyboard.IsKeyDown(keySpammer))
                     {
                         Interop.PostMessage(roClient.process.MainWindowHandle, Constants.WM_KEYDOWN_MSG_ID, thisk, 0);
                         Thread.Sleep(this.ahkDelay);
