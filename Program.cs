@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Windows.Forms;
+using JPRagTools.Utils;
 
 namespace JPRagTools
 {
@@ -10,15 +12,18 @@ namespace JPRagTools
         [STAThread]
         static void Main()
         {
-            System.Windows.Forms.Application.EnableVisualStyles();
-            System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
-            // Application app = new Application();
-            // app.IsMdiContainer = true;
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
 
-            //Forms.ClientUpdaterForm app = new Forms.ClientUpdaterForm();
-            //Forms.ProfileForm app = new Forms.ProfileForm();
-            Forms.AutoPatcher app = new Forms.AutoPatcher();
-            System.Windows.Forms.Application.Run(app);
+            using (Forms.LoginForm loginForm = new Forms.LoginForm())
+            {
+                loginForm.ShowDialog();
+
+                if (loginForm.IsAuthenticated)
+                {
+                    Application.Run(new Forms.AutoPatcher());
+                }
+            }
         }
     }
 }

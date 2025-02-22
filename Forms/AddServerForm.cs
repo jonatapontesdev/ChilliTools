@@ -64,9 +64,24 @@ namespace JPRagTools.Forms
             List<char> charsHP = dto.hpAddress.Replace("0x", "").ToCharArray().ToList();
             List<char> charsName = dto.nameAddress.Replace("0x", "").ToCharArray().ToList();
 
-            txtHP.Text = charsHP.ElementAtOrDefault(0).ToString();
+            txtHP1.Text = charsHP.ElementAtOrDefault(0).ToString();
+            txtHP2.Text = charsHP.ElementAtOrDefault(1).ToString();
+            txtHP3.Text = charsHP.ElementAtOrDefault(2).ToString();
+            txtHP4.Text = charsHP.ElementAtOrDefault(3).ToString();
+            txtHP5.Text = charsHP.ElementAtOrDefault(4).ToString();
+            txtHP6.Text = charsHP.ElementAtOrDefault(5).ToString();
+            txtHP7.Text = charsHP.ElementAtOrDefault(6).ToString();
+            txtHP8.Text = charsHP.ElementAtOrDefault(7).ToString();
 
-            txtName.Text = charsName.ElementAtOrDefault(0).ToString();
+
+            txtName1.Text = charsName.ElementAtOrDefault(0).ToString();
+            txtName2.Text = charsName.ElementAtOrDefault(1).ToString();
+            txtName3.Text = charsName.ElementAtOrDefault(2).ToString();
+            txtName4.Text = charsName.ElementAtOrDefault(3).ToString();
+            txtName5.Text = charsName.ElementAtOrDefault(4).ToString();
+            txtName6.Text = charsName.ElementAtOrDefault(5).ToString();
+            txtName7.Text = charsName.ElementAtOrDefault(6).ToString();
+            txtName8.Text = charsName.ElementAtOrDefault(7).ToString();
 
             processCB.Text = dto.name;
         }
@@ -124,13 +139,8 @@ namespace JPRagTools.Forms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (txtHP.Text.Length != 8 || txtName.Text.Length != 8)
-            {
-                MessageBox.Show("Os campos de HP e Nome devem ter exatamente 8 caracteres!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            string hpAddress = txtHP.Text;
-            string nameAddress = txtName.Text;
+            string hpAddress = string.Concat(txtHP1.Text, txtHP2.Text, txtHP3.Text, txtHP4.Text, txtHP5.Text, txtHP6.Text, txtHP7.Text, txtHP8.Text);
+            string nameAddress = string.Concat(txtName1.Text, txtName2.Text, txtName3.Text, txtName4.Text, txtName5.Text, txtName6.Text, txtName7.Text, txtName8.Text);
             try
             {
                 //If don't have client DTO, save a new server. If have DTO, should update given DTO.
@@ -149,6 +159,7 @@ namespace JPRagTools.Forms
                 }
 
                 this.subject.Notify(new Utils.Message(MessageCode.SERVER_LIST_CHANGED, "Server Adicionado"));
+                this.Close();
             }
             catch (Exception ex)
             {

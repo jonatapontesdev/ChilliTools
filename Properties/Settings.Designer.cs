@@ -22,15 +22,16 @@ namespace JPRagTools.Properties {
                 return defaultInstance;
             }
         }
-
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Configuração
-        {
-            get
-            {
-                return ((string)(this["Configuração"]));
+        public string SavedEmail {
+            get {
+                return ((string)(this["SavedEmail"]));
+            }
+            set {
+                this["SavedEmail"] = value;
             }
         }
     }
