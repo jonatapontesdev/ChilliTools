@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Threading;
 using System.Windows.Input;
 using System.Windows.Forms;
@@ -23,7 +23,7 @@ namespace JPRagTools.Model
             Client roClient = ClientSingleton.GetClient();
             if (roClient != null)
             {
-                this.thread = AutoBuffThread(roClient);
+                 this.thread = AutoBuffThread(roClient);
                 _JPThread.Start(this.thread);
             }
         }
@@ -39,6 +39,9 @@ namespace JPRagTools.Model
                 {
                     uint currentStatus = c.CurrentBuffStatusCode(i);
                     EffectStatusIDs status = (EffectStatusIDs)currentStatus;
+                    
+                    if (status == EffectStatusIDs.IGNORE) { continue; };
+                    if (status == EffectStatusIDs.IGNORE_2) { continue; };
 
                     if (status == EffectStatusIDs.OVERTHRUSTMAX)
                     {
@@ -58,7 +61,7 @@ namespace JPRagTools.Model
 
                 foreach (var item in bmClone)
                 {
-                    if (foundQuag && (item.Key == EffectStatusIDs.CONCENTRATION || item.Key == EffectStatusIDs.INC_AGI || item.Key == EffectStatusIDs.TRUESIGHT || item.Key == EffectStatusIDs.ADRENALINE))
+                    if (foundQuag && (item.Key == EffectStatusIDs.CONCENTRATION || item.Key == EffectStatusIDs.INC_AGI || item.Key == EffectStatusIDs.TRUESIGHT || item.Key == EffectStatusIDs.ADRENALINE || item.Key == EffectStatusIDs.SPEARQUICKEN))
                     {
                         break;
                     }
@@ -111,7 +114,7 @@ namespace JPRagTools.Model
 
         private void useAutobuff(Key key)
         {
-            if ((key != Key.None) && !Keyboard.IsKeyDown(Key.LeftAlt) && !Keyboard.IsKeyDown(Key.RightAlt))
+            if((key != Key.None) && !Keyboard.IsKeyDown(Key.LeftAlt) && !Keyboard.IsKeyDown(Key.RightAlt))
                 Interop.PostMessage(ClientSingleton.GetClient().process.MainWindowHandle, Constants.WM_KEYDOWN_MSG_ID, (Keys)Enum.Parse(typeof(Keys), key.ToString()), 0);
         }
     }

@@ -163,7 +163,7 @@ namespace JPRagTools.Forms
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"[Add Server] {ex.Message}", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         private void btnCancel_Click(object sender, EventArgs e)

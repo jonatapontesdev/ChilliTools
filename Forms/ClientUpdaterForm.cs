@@ -38,7 +38,7 @@ namespace JPRagTools.Forms
                 clients.AddRange(JsonConvert.DeserializeObject<List<ClientDTO>>(remoteServersRaw));
 
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 //If catch some exception while Fetch, load resource file.
                 MessageBox.Show("Não é possível carregar o arquivo supported_servers. Carregando recurso em vez disso....");

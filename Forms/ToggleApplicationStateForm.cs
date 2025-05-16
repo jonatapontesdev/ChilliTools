@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
 using JPRagTools.Utils;
@@ -81,10 +81,11 @@ namespace JPRagTools.Forms
             {
                 this.btnStatusToggle.BackColor = Color.Red;
                 this.btnStatusToggle.Text = "OFF";
-                this.notifyIconTray.Icon = Resources.JPRagTools.ETCResource.logo_4rtools_off;
+                this.notifyIconTray.Icon = Resources.JPRagTools.ETCResource.logo_chilli_off;
                 this.subject.Notify(new Utils.Message(MessageCode.TURN_OFF, null));
-                this.lblStatusToggle.Text = "Press the key to start!";
-                new SoundPlayer(Resources.JPRagTools.ETCResource.Speech_Off).Play();
+                this.lblStatusToggle.Text = "Pressione a tecla para iniciar!";
+
+                if (this.cbAudio.Checked) { new SoundPlayer(Resources.JPRagTools.ETCResource.Speech_Off).Play(); }
             }
             else
             {
@@ -93,15 +94,16 @@ namespace JPRagTools.Forms
                 {
                     this.btnStatusToggle.BackColor = Color.Green;
                     this.btnStatusToggle.Text = "ON";
-                    this.notifyIconTray.Icon = Resources.JPRagTools.ETCResource.logo_4rtools_on;
+                    this.notifyIconTray.Icon = Resources.JPRagTools.ETCResource.logo_chilli_on;
                     this.subject.Notify(new Utils.Message(MessageCode.TURN_ON, null));
-                    this.lblStatusToggle.Text = "Press the key to stop!";
+                    this.lblStatusToggle.Text = "Pressione a tecla para parar!";
                     this.lblStatusToggle.ForeColor = Color.Black;
-                    new SoundPlayer(Resources.JPRagTools.ETCResource.Speech_On).Play();
+
+                    if (this.cbAudio.Checked) { new SoundPlayer(Resources.JPRagTools.ETCResource.Speech_On).Play(); }
                 }
                 else
                 {
-                    this.lblStatusToggle.Text = "Please select a valid Ragnarok Client!";
+                    this.lblStatusToggle.Text = "Selecione o cliente Ragnarok!!";
                     this.lblStatusToggle.ForeColor = Color.Red;
                 }
             }

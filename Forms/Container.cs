@@ -24,21 +24,20 @@ namespace JPRagTools.Forms
             this.IsMdiContainer = true;
             SetBackGroundColorOfMDIForm();
 
-            //Paint Children Forms 
+            //Paint Children Forms
             SetToggleApplicationStateWindow();
             SetAutopotWindow();
             SetAutopotYggWindow();
             SetSkillTimerWindow();
-            SetAutoStatusEffectWindow();
-            SetAHKWindow();
             SetProfileWindow();
-            SetAutobuffStuffWindow();
+            SetAHKWindow();
             SetAutobuffSkillWindow();
+            SetAutobuffStuffWindow();
+            SetDebuffRecoveryWindow();
             SetSongMacroWindow();
             SetATKDEFWindow();
             SetMacroSwitchWindow();
             SetServerWindow();
-            SetAdvertisementWindow();
 
             TrackerSingleton.Instance().SendEvent("desktop_login", "page_view", "desktop_container_load");
         }
@@ -72,7 +71,6 @@ namespace JPRagTools.Forms
         {
             Client client = new Client(this.processCB.SelectedItem.ToString());
             ClientSingleton.Instance(client);
-            characterName.Text = client.ReadCharacterName();
             subject.Notify(new Utils.Message(Utils.MessageCode.PROCESS_CHANGED, null));
         }
 
@@ -156,7 +154,8 @@ namespace JPRagTools.Forms
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Console.Error.WriteLine($"[ProfileSingleton.Load] Error Message: {ex.Message}");
+                    MessageBox.Show($"Erro ao carregar o novo perfil. \nEntre em contato pelo Discord. \nPor favor envie esta mensagem de erro ao administrador: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -165,13 +164,21 @@ namespace JPRagTools.Forms
         {
             switch ((subject as Subject).Message.code)
             {
-                case MessageCode.TURN_ON:
+                case MessageCode.PROCESS_CHANGED:
                 case MessageCode.PROFILE_CHANGED:
                     Client client = ClientSingleton.GetClient();
                     if (client != null)
-                    {
-                        characterName.Text = ClientSingleton.GetClient().ReadCharacterName();
-                    }
+                        this.characterName.Text = client.ReadCharacterName();
+                    break;
+                case MessageCode.TURN_OFF:
+                    this.profileCB.Enabled = true;
+                    this.processCB.Enabled = true;
+
+                    break;
+                case MessageCode.TURN_ON:
+                    this.profileCB.Enabled = false;
+                    this.processCB.Enabled = false;
+                    this.characterName.Text = ClientSingleton.GetClient().ReadCharacterName();
                     break;
                 case MessageCode.SERVER_LIST_CHANGED:
                     this.refreshProcessList();
@@ -197,17 +204,8 @@ namespace JPRagTools.Forms
         {
             ToggleApplicationStateForm frm = new ToggleApplicationStateForm(subject);
             frm.FormBorderStyle = FormBorderStyle.None;
-            frm.Location = new Point(350, 70);
             frm.MdiParent = this;
-            frm.Show();
-        }
-
-        public void SetAdvertisementWindow()
-        {
-            AdvertisementForm frm = new AdvertisementForm();
-            frm.FormBorderStyle = FormBorderStyle.None;
-            frm.MdiParent = this;
-            this.panelAdvertisement.Controls.Add(frm);
+            this.OnOffPanel.Controls.Add(frm);
             frm.Show();
         }
 
@@ -234,28 +232,9 @@ namespace JPRagTools.Forms
             frm.FormBorderStyle = FormBorderStyle.None;
             frm.MdiParent = this;
             frm.Show();
-            addform(this.tabPageSkillTimer, frm);
+            addform(this.tabSkillTimer, frm);
 
         }
-        public void SetAutoStatusEffectWindow()
-        {
-            StatusEffectForm form = new StatusEffectForm(subject);
-            form.FormBorderStyle = FormBorderStyle.None;
-            form.Location = new Point(20, 220);
-            form.MdiParent = this;
-            form.Show();
-        }
-
-        public void SetAHKWindow()
-        {
-            AHKForm frm = new AHKForm(subject);
-            frm.FormBorderStyle = FormBorderStyle.None;
-            frm.Location = new Point(0, 65);
-            frm.MdiParent = this;
-            frm.Show();
-            addform(this.tabPageSpammer, frm);
-        }
-
         public void SetProfileWindow()
         {
             ProfileForm frm = new ProfileForm(this);
@@ -276,14 +255,14 @@ namespace JPRagTools.Forms
             addform(this.tabPageServer, frm);
         }
 
-        public void SetAutobuffStuffWindow()
+        public void SetAHKWindow()
         {
-            StuffAutoBuffForm frm = new StuffAutoBuffForm(subject);
+            AHKForm frm = new AHKForm(subject);
             frm.FormBorderStyle = FormBorderStyle.None;
             frm.Location = new Point(0, 65);
             frm.MdiParent = this;
             frm.Show();
-            addform(this.tabPageAutobuffStuff, frm);
+            addform(this.tabPageSpammer, frm);
         }
 
         public void SetAutobuffSkillWindow()
@@ -294,6 +273,26 @@ namespace JPRagTools.Forms
             frm.MdiParent = this;
             addform(this.tabPageAutobuffSkill, frm);
             frm.Show();
+        }
+
+        public void SetAutobuffStuffWindow()
+        {
+            StuffAutoBuffForm frm = new StuffAutoBuffForm(subject);
+            frm.FormBorderStyle = FormBorderStyle.None;
+            frm.Location = new Point(0, 65);
+            frm.MdiParent = this;
+            frm.Show();
+            addform(this.tabPageAutobuffStuff, frm);
+        }
+
+        public void SetDebuffRecoveryWindow()
+        {
+            DebuffRecoveryForm frm = new DebuffRecoveryForm(subject);
+            frm.FormBorderStyle = FormBorderStyle.None;
+            frm.Location = new Point(0, 65);
+            frm.MdiParent = this;
+            frm.Show();
+            addform(this.tabDebuffRecovery, frm);
         }
 
         public void SetSongMacroWindow()

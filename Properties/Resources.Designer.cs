@@ -63,6 +63,16 @@ namespace JPRagTools.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap _new {
+            get {
+                object obj = ResourceManager.GetObject("new", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap ChilliTools {
             get {
                 object obj = ResourceManager.GetObject("ChilliTools", resourceCulture);
@@ -95,7 +105,7 @@ namespace JPRagTools.Properties {
         /// </summary>
         public static System.Drawing.Bitmap up_and_down_arrow {
             get {
-                object obj = ResourceManager.GetObject("up_and_down_arrow", resourceCulture);
+                object obj = ResourceManager.GetObject("up-and-down-arrow", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

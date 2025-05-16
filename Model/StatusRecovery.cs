@@ -1,12 +1,8 @@
-﻿using JPRagTools.Model;
-using JPRagTools.Utils;
+﻿﻿using JPRagTools.Utils;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
 
@@ -14,11 +10,12 @@ namespace JPRagTools.Model
 {
     public class StatusRecovery : Action
     {
-        public static string ACTION_NAME_STATUS_AUTOBUFF = "StatusAutoBuff";
+        public static string ACTION_NAME_STATUS_AUTOBUFF = "StatusRecovery";
 
         private _JPThread thread;
         public Dictionary<EffectStatusIDs, Key> buffMapping = new Dictionary<EffectStatusIDs, Key>();
         public int delay { get; set; } = 1;
+        public bool autoStand { get; set; } = false;
 
         public string GetActionName()
         {
@@ -43,7 +40,13 @@ namespace JPRagTools.Model
                             this.useStatusRecovery(key);
                         }
                     }
+
+                    if (this.autoStand && EffectStatusIDs.EFST_SIT == status)
+                    {
+                        this.useStatusRecovery(Key.Insert);
+                    }
                 }
+
                 Thread.Sleep(this.delay);
                 return 0;
             });

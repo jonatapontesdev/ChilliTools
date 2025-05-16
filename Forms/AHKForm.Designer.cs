@@ -710,7 +710,7 @@ namespace JPRagTools.Forms
             this.groupBox3.Size = new System.Drawing.Size(122, 100);
             this.groupBox3.TabIndex = 34;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Legend";
+            this.groupBox3.Text = "Example";
             // 
             // cbDeactivated
             // 

@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
-using JPRagTools.Model;
-using JPRagTools.Utils;
+﻿using System.Windows.Forms;
 using System.Windows.Input;
+using System.Collections.Generic;
+using JPRagTools.Utils;
+using JPRagTools.Model;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace JPRagTools.Forms
 {
@@ -20,8 +20,10 @@ namespace JPRagTools.Forms
             stuffContainers.Add(new BuffContainer(this.FoodsGP, Buff.GetFoodBuffs()));
             stuffContainers.Add(new BuffContainer(this.ScrollBuffsGP, Buff.GetScrollBuffs()));
             stuffContainers.Add(new BuffContainer(this.EtcGP, Buff.GetETCBuffs()));
+            stuffContainers.Add(new BuffContainer(this.CandiesGP, Buff.GetCandiesBuffs()));
+            stuffContainers.Add(new BuffContainer(this.ExpGP, Buff.GetEXPBuffs()));
 
-            new BuffRenderer(stuffContainers, toolTip1).doRender();
+            new BuffRenderer("Autobuff", stuffContainers, toolTip1).doRender();
 
             subject.Attach(this);
         }

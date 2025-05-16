@@ -1,11 +1,10 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Windows.Input;
 using Newtonsoft.Json;
 using System.Threading;
 using JPRagTools.Utils;
 using System.Windows.Forms;
-using System.Runtime.InteropServices;
 
 namespace JPRagTools.Model
 {
@@ -13,6 +12,7 @@ namespace JPRagTools.Model
     {
         public Key key { get; set; }
         public int delay { get; set; } = 50;
+        public bool hasClick { get; set; } = false;
 
         public MacroKey(Key key, int delay)
         {
@@ -29,6 +29,8 @@ namespace JPRagTools.Model
         public Key instrumentKey { get; set; }
         public int delay { get; set; } = 50;
         public Dictionary<string, MacroKey> macroEntries { get; set; } = new Dictionary<string, MacroKey>();
+        public bool infinityLoop { get; set; } = false;
+        public bool infinityLoopOn { get; set; } = false;
 
         public ChainConfig() { }
         public ChainConfig(int id)
@@ -44,6 +46,7 @@ namespace JPRagTools.Model
             this.trigger = macro.trigger;
             this.daggerKey = macro.daggerKey;
             this.instrumentKey = macro.instrumentKey;
+            this.infinityLoop = macro.infinityLoop;
             this.macroEntries = new Dictionary<string, MacroKey>(macro.macroEntries);
         }
         public ChainConfig(int id, Key trigger)
@@ -57,7 +60,7 @@ namespace JPRagTools.Model
     public class Macro : Action
     {
         public static string ACTION_NAME_SONG_MACRO = "SongMacro2.0";
-        public static string ACTION_NAME_MACRO_SWITCH = "MacroSwitch";
+        public static string ACTION_NAME_MACRO_SWITCH = "MacroSwitch2.0";
 
         public string actionName { get; set; }
         private _JPThread thread;
@@ -66,10 +69,9 @@ namespace JPRagTools.Model
         public Macro(string macroname, int macroLanes)
         {
             this.actionName = macroname;
-            for (int i = 1; i <= macroLanes; i++)
+            for(int i = 1; i <= macroLanes; i++)
             {
                 chainConfigs.Add(new ChainConfig(i, Key.None));
-
             }
         }
 
@@ -80,7 +82,7 @@ namespace JPRagTools.Model
                 chainConfigs[macroId - 1] = new ChainConfig(macroId);
             }
             catch (Exception) { }
-
+            
         }
 
         public string GetActionName()
@@ -92,6 +94,7 @@ namespace JPRagTools.Model
         {
             return JsonConvert.SerializeObject(this);
         }
+
         private int MacroExecutionThread(Client roClient)
         {
             foreach (ChainConfig chainConfig in this.chainConfigs)
@@ -104,24 +107,31 @@ namespace JPRagTools.Model
                         MacroKey macroKey = macro["in" + i + "mac" + chainConfig.id];
                         if (macroKey.key != Key.None)
                         {
-                            if (chainConfig.instrumentKey != Key.None)
+                            if(chainConfig.instrumentKey != Key.None)
                             {
                                 //Press instrument key if exists.
                                 Keys instrumentKey = (Keys)Enum.Parse(typeof(Keys), chainConfig.instrumentKey.ToString());
                                 Interop.PostMessage(roClient.process.MainWindowHandle, Constants.WM_KEYDOWN_MSG_ID, instrumentKey, 0);
-                                Thread.Sleep(30);
+                                Thread.Sleep(30); //TODO FIX IT LATER -> Remove fixed sleep (read from ui)
                             }
 
                             Keys thisk = (Keys)Enum.Parse(typeof(Keys), macroKey.key.ToString());
                             Thread.Sleep(macroKey.delay);
                             Interop.PostMessage(roClient.process.MainWindowHandle, Constants.WM_KEYDOWN_MSG_ID, thisk, 0);
 
-                            if (chainConfig.daggerKey != Key.None)
+                            if (macroKey.hasClick) {
+                                Interop.PostMessage(roClient.process.MainWindowHandle, Constants.WM_LBUTTONDOWN, 0, 0);
+                                Thread.Sleep(1);
+                                Interop.PostMessage(roClient.process.MainWindowHandle, Constants.WM_LBUTTONUP, 0, 0);
+                            }
+                            
+
+                            if(chainConfig.daggerKey != Key.None)
                             {
                                 //Press instrument key if exists.
                                 Keys daggerKey = (Keys)Enum.Parse(typeof(Keys), chainConfig.daggerKey.ToString());
                                 Interop.PostMessage(roClient.process.MainWindowHandle, Constants.WM_KEYDOWN_MSG_ID, daggerKey, 0);
-                                Thread.Sleep(30);
+                                Thread.Sleep(30); //TODO FIX IT LATER -> Remove fixed sleep (read from ui)
                             }
 
                         }

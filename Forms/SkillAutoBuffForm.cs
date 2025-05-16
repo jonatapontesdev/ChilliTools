@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
+using JPRagTools.Utils;
+using JPRagTools.Model;
 using System.Windows.Input;
 using System.Collections.Generic;
-using JPRagTools.Model;
-using JPRagTools.Utils;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace JPRagTools.Forms
 {
@@ -26,10 +27,14 @@ namespace JPRagTools.Forms
             skillContainers.Add(new BuffContainer(this.TKSkillGroupBox, Buff.GetTaekwonSkills()));
             skillContainers.Add(new BuffContainer(this.NinjaSkillsGP, Buff.GetNinjaSkills()));
             skillContainers.Add(new BuffContainer(this.GunsSkillsGP, Buff.GetGunsSkills()));
+            skillContainers.Add(new BuffContainer(this.summonerSkillsGP, Buff.GeSummonerSkills()));
+            skillContainers.Add(new BuffContainer(this.SoulAsceticSkillsGP, Buff.GetSoulAsceticSkills()));
+            skillContainers.Add(new BuffContainer(this.NightWatchSkillsGP, Buff.GetNightWatchSkills()));
+            skillContainers.Add(new BuffContainer(this.HyperNoviceSkillsGP, Buff.GetHyperNoviceSkills()));
+            skillContainers.Add(new BuffContainer(this.HomunculusSkillsGP, Buff.GetHomunculusBuffs()));
 
-            new BuffRenderer(skillContainers, toolTip1).doRender();
+            new BuffRenderer("Autobuff", skillContainers, toolTip1).doRender();
             subject.Attach(this);
-
         }
 
         public void Update(ISubject subject)
